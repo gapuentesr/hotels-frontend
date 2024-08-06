@@ -70,6 +70,7 @@
 
 <script>
 import axios from 'axios';
+const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
 
 export default {
   data() {
@@ -95,7 +96,7 @@ export default {
   methods: {
     async fetchHotel() {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/hotels/${this.$route.params.hotelId}`);
+        const response = await axios.get(`${API_BASE_URL}/hotels/${this.$route.params.hotelId}`);
         this.hotel = response.data;
       } catch (error) {
         console.error('Error fetching hotel data:', error);
@@ -103,7 +104,7 @@ export default {
     },
     async fetchRoomTypes() {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/hotels/${this.$route.params.hotelId}/room-types`);
+        const response = await axios.get(`${API_BASE_URL}/hotels/${this.$route.params.hotelId}/room-types`);
         this.roomTypes = response.data;
       } catch (error) {
         console.error('Error fetching room types:', error);
@@ -120,7 +121,7 @@ export default {
       if (!this.validate()) return;
 
       try {
-        await axios.post('http://127.0.0.1:8000/api/room-types', this.roomType);
+        await axios.post(`${API_BASE_URL}/room-types`, this.roomType);
         this.success = '¡Tipo de habitación creado con éxito!';
         this.error = null;
         this.roomType = {

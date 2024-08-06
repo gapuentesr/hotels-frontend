@@ -12,6 +12,7 @@
 
 <script>
 import axios from 'axios';
+const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
 
 export default {
   data() {
@@ -22,7 +23,7 @@ export default {
   methods: {
     async fetchRoomTypes() {
       try {
-        const response = await axios.get('http://localhost:8000/api/room-types');
+        const response = await axios.get(`${API_BASE_URL}/room-types`);
         this.roomTypes = response.data;
       } catch (error) {
         console.error(error);

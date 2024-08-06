@@ -52,6 +52,7 @@
 
 <script>
 import axios from 'axios';
+const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
 
 export default {
   data() {
@@ -62,7 +63,7 @@ export default {
   methods: {
     async fetchHotels() {
       try {
-        const response = await axios.get('http://localhost:8000/api/hotels');
+        const response = await axios.get(`${API_BASE_URL}/hotels`);
         this.hotels = response.data;
       } catch (error) {
         console.error('Error fetching hotels:', error);

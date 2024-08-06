@@ -54,6 +54,7 @@
 
 <script>
 import axios from 'axios';
+const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
 
 export default {
   data() {
@@ -85,7 +86,7 @@ export default {
       if (!this.validate()) return;
 
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/hotels', this.hotel);
+        const response = await axios.post(`${API_BASE_URL}/hotels`, this.hotel);
         if (response.status === 201) {
           this.success = '¡Hotel creado con éxito!';
           this.error = null;
